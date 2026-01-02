@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun! 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .sky-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b6b 0%, #ffa07a 15%, #ee82ee 35%, #9370db 55%, #4169e1 70%, #1e3a8a 85%, #0f172a 100%);
+            animation: skyTransition 60s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes skyTransition {
+            0%, 100% {
+                background: linear-gradient(to bottom, #ff6b6b 0%, #ffa07a 15%, #ee82ee 35%, #9370db 55%, #4169e1 70%, #1e3a8a 85%, #0f172a 100%);
+            }
+            50% {
+                background: linear-gradient(to bottom, #0f172a 0%, #1e3a8a 20%, #4169e1 40%, #000428 60%, #004e92 80%, #000000 100%);
+            }
+        }
+
+        .star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+            animation: twinkle 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #fff;
+            z-index: 2;
+        }
+
+        .celestial {
+            position: fixed;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            top: 15%;
+            right: 10%;
+            z-index: 1;
+            background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
+            box-shadow: 0 0 60px rgba(255, 200, 100, 0.8);
+            animation: celestialGlow 60s ease-in-out infinite;
+        }
+
+        @keyframes celestialGlow {
+            0%, 100% {
+                background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
+                box-shadow: 0 0 60px rgba(255, 200, 100, 0.8);
+            }
+            50% {
+                background: radial-gradient(circle, #f0f0f0 0%, #e0e0e0 100%);
+                box-shadow: 0 0 80px rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .stage {
+            display: none;
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .stage.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .typewriter-container {
+            min-height: 200px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .typewriter-text {
+            font-size: 1.2em;
+            line-height: 2;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            white-space: pre-wrap;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #fff;
+            animation: blink 0.7s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .interactive-game {
+            margin: 40px 0;
+        }
+
+        .memory-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card.flipped {
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            background: rgba(76, 175, 80, 0.5);
+            border-color: #4caf50;
+            pointer-events: none;
+        }
+
+        .wish-collector {
+            margin: 30px 0;
+        }
+
+        .wish-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            color: #fff;
+            backdrop-filter: blur(5px);
+            margin: 10px 0;
+        }
+
+        .wish-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .wish-list {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .wish-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .candle-game, .balloon-game {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .candle {
+            width: 45px;
+            height: 90px;
+            background: linear-gradient(to bottom, #ff6b9d, #c44569);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: candleWobble 2s ease-in-out infinite;
+        }
+
+        .candle:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes candleWobble {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        .flame {
+            width: 22px;
+            height: 35px;
+            background: radial-gradient(circle, #ffd700, #ff8c00, #ff4500);
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 0.3s ease-in-out infinite;
+            box-shadow: 0 0 20px #ffd700, 0 0 40px #ff8c00;
+        }
+
+        .flame.out {
+            display: none;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1, 0.9); }
+        }
+
+        .balloon {
+            width: 65px;
+            height: 85px;
+            background: linear-gradient(to bottom, #ff6b9d, #c44569 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            animation: floatBalloon 3s ease-in-out infinite;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateX(-50%);
+        }
+
+        .balloon:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .balloon:nth-child(2) {
+            background: linear-gradient(to bottom, #4facfe, #00f2fe 70%);
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background: linear-gradient(to bottom, #43e97b, #38f9d7 70%);
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(4) {
+            background: linear-gradient(to bottom, #fa709a, #fee140 70%);
+            animation-delay: 1.5s;
+        }
+
+        .balloon:nth-child(5) {
+            background: linear-gradient(to bottom, #a8edea, #fed6e3 70%);
+            animation-delay: 2s;
+        }
+
+        @keyframes floatBalloon {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .balloon.popped {
+            animation: pop 0.4s ease-out forwards;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.7; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .score {
+            font-size: 1.5em;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .loading-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b9d, #4facfe, #43e97b, #ffd700);
+            background-size: 200% 100%;
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 15px;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 999;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-btn-player {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .music-btn-player:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            animation: zoomIn 0.5s;
+            position: relative;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 15px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #ff6b9d;
+            transform: rotate(90deg);
+        }
+
+        .image-trigger {
+            margin: 20px 0;
+            padding: 80px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px dashed rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-trigger:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sky-bg"></div>
+    <div class="celestial"></div>
+    <div id="stars"></div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-btn-player" onclick="toggleMusic()" id="playBtn">▶</div>
+        <span id="musicStatus">Music OFF</span>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img class="modal-image" id="modalImage" src="" alt="Birthday Image">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stage 1: Welcome -->
+        <div class="stage active" id="stage1">
+            <h1>✨ Selamat Datang ✨</h1>
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="text1"></div>
+            </div>
+            <div class="loading-bar"><div class="loading-fill" id="loading1"></div></div>
+            
+            <div class="image-trigger" onclick="showImage('https://via.placeholder.com/600x400/ff6b9d/ffffff?text=Ganti+dengan+foto+kamu!')">
+                📸 Klik untuk lihat foto spesial!
+            </div>
+            
+            <button class="btn" id="nextBtn1" onclick="nextStage(2)" disabled>Mulai Petualangan ►</button>
+            <button class="btn" onclick="skipTyping(1)">Skip >></button>
+        </div>
+
+        <!-- Stage 2: Memory Game -->
+        <div class="stage" id="stage2">
+            <h1>🎮 Game Memory Card 🎮</h1>
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="text2"></div>
+            </div>
+            <div class="loading-bar"><div class="loading-fill" id="loading2"></div></div>
+            <div class="score">Gerakan: <span id="moves">0</span> | Pasangan: <span id="pairs">0/4</span></div>
+            <div class="interactive-game">
+                <div class="memory-cards" id="memoryGame"></div>
+            </div>
+            <button class="btn" onclick="skipTyping(2)">Skip >></button>
+        </div>
+
+        <!-- Stage 3: Candle Game -->
+        <div class="stage" id="stage3">
+            <h1>🕯️ Tiup Lilin Harapan 🕯️</h1>
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="text3"></div>
+            </div>
+            <div class="loading-bar"><div class="loading-fill" id="loading3"></div></div>
+            
+            <div class="image-trigger" onclick="showImage('https://via.placeholder.com/600x400/ffd700/ffffff?text=Momen+Spesial!')">
+                🎂 Lihat momen kue ultah!
+            </div>
+            
+            <div class="score">🕯️ Lilin Tersisa: <span id="candleCount">5</span> 🕯️</div>
+            <div class="candle-game" id="candles"></div>
+            <button class="btn" onclick="skipTyping(3)">Skip >></button>
+        </div>
+
+        <!-- Stage 4: Wish Collector -->
+        <div class="stage" id="stage4">
+            <h1>💫 Tulis Harapanmu 💫</h1>
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="text4"></div>
+            </div>
+            <div class="loading-bar"><div class="loading-fill" id="loading4"></div></div>
+            
+            <div class="wish-collector">
+                <input type="text" class="wish-input" id="wishInput" placeholder="Tuliskan harapanmu di sini..." onkeypress="if(event.key==='Enter') addWish()">
+                <button class="btn" onclick="addWish()">Tambah Harapan ✨</button>
+                <div class="wish-list" id="wishList"></div>
+            </div>
+            
+            <button class="btn" id="nextBtn4" onclick="nextStage(5)" disabled>Lanjut ►</button>
+            <button class="btn" onclick="skipTyping(4)">Skip >></button>
+        </div>
+
+        <!-- Stage 5: Balloon Game -->
+        <div class="stage" id="stage5">
+            <h1>🎈 Lepaskan Balon Impian 🎈</h1>
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="text5"></div>
+            </div>
+            <div class="loading-bar"><div class="loading-fill" id="loading5"></div></div>
+            <div class="score">🎈 Balon Tersisa: <span id="balloonCount">5</span> 🎈</div>
+            <div class="balloon-game" id="balloons"></div>
+            <button class="btn" onclick="skipTyping(5)">Skip >></button>
+        </div>
+
+        <!-- Stage 6: Final Message -->
+        <div class="stage" id="stage6">
+            <h1>🎂 Selamat Ulang Tahun! 🎂</h1>
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="text6"></div>
+            </div>
+            <div class="loading-bar"><div class="loading-fill" id="loading6"></div></div>
+            
+            <div class="image-trigger" onclick="showImage('https://via.placeholder.com/600x400/43e97b/ffffff?text=Foto+Perayaan!')">
+                🎉 Lihat foto perayaan!
+            </div>
+            
+            <button class="btn" onclick="createFireworks()">Pesta Kembang Api! 🎆</button>
+            <button class="btn" onclick="location.reload()">Mulai Lagi 🔄</button>
+        </div>
+    </div>
+<audio id="bgMusic" loop preload="auto">
+    <source src="music/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", function initMusic() {
+    music.volume = 0.6;
+
+    music.addEventListener("canplaythrough", () => {
+        music.play().catch(e => console.log(e));
+    }, { once: true });
+
+    document.removeEventListener("click", initMusic);
+});
+</script>
+
+
+    <script>
+        const texts = {
+            1: `Seperti langit sore yang berubah jadi malam,
+Hari ini transisi menuju babak baru hidupmu.
+
+Matahari terbenam meninggalkan jejak emas,
+Bintang mulai bermunculan satu per satu,
+Seperti harapan yang tumbuh di hatimu.
+
+Mari sambut malam berbintang ini bersama...`,
+
+            2: `Sebelum kita lanjut,
+Mari bermain game memory card!
+
+Temukan 4 pasangan emoji yang sama.
+Setiap kartu menyimpan makna:
+🎂 = Kebahagiaan
+🎁 = Kejutan
+🎈 = Kebebasan  
+💝 = Cinta
+
+Klik kartu untuk membaliknya!`,
+
+            3: `Lima lilin harapan di hadapanmu:
+
+🕯️ Kesehatan sempurna
+🕯️ Kebahagiaan tulus
+🕯️ Kesuksesan nyata
+🕯️ Cinta abadi
+🕯️ Kebijaksanaan dalam
+
+Tiup setiap lilin dengan harapanmu...`,
+
+            4: `Sekarang saatnya untuk bermimpi.
+Tuliskan semua harapan dan impianmu.
+
+Tidak ada batasan, tidak ada yang mustahil.
+Bintang-bintang mendengarkan setiap kata.
+Alam semesta berkonspirasi untuk mewujudkannya.
+
+Tulis harapanmu dan tekan Enter...`,
+
+            5: `Lima balon harapan siap terbang:
+
+🎈 Merah - Semangat membara
+🎈 Biru - Ketenangan jiwa
+🎈 Hijau - Pertumbuhan terus
+🎈 Kuning - Kreativitas tanpa batas
+🎈 Pink - Kegembiraan hidup
+
+Pecahkan dan lepaskan impianmu ke langit...`,
+
+            6: `Langit malam penuh bintang bersinar.
+Seperti kehidupanmu penuh kemungkinan.
+
+Kau telah menyelesaikan perjalanan ini,
+Dari senja hingga malam penuh bintang.
+Setiap tahapan adalah simbol pertumbuhanmu.
+
+✨ SELAMAT ULANG TAHUN! ✨
+
+Semoga hari ini dan esok hari
+Dipenuhi keajaiban langit malam ini.
+
+Dengan cinta dan harapan,
+Dari yang menyayangimu. 💫
+
+Terima kasih telah hadir di dunia ini!`
+        };
+
+        let currentStage = 1;
+        let candlesLeft = 5;
+        let balloonsLeft = 5;
+        let typeInterval = null;
+        let musicPlaying = false;
+        let wishes = [];
+        
+        // Memory game variables
+        let moves = 0;
+        let pairs = 0;
+        let flippedCards = [];
+        const emojis = ['🎂', '🎁', '🎈', '💝', '🎂', '🎁', '🎈', '💝'];
+
+        function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(star);
+            }
+        }
+
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.left = Math.random() * 50 + 25 + '%';
+            star.style.top = Math.random() * 30 + '%';
+            star.style.animation = 'none';
+            document.body.appendChild(star);
+            
+            setTimeout(() => {
+                star.style.animation = 'confettiFall 2s linear forwards';
+            }, 10);
+            
+            setTimeout(() => star.remove(), 2000);
+        }
+
+        setInterval(createShootingStar, 5000);
+        createStars();
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('playBtn');
+            const status = document.getElementById('musicStatus');
+            
+            if (musicPlaying) {
+                music.pause();
+                btn.textContent = '▶';
+                status.textContent = 'Music OFF';
+            } else {
+                music.play();
+                btn.textContent = '⏸';
+                status.textContent = 'Music ON';
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        function showImage(url) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            img.src = url;
+            modal.classList.add('active');
+            createParticles(event);
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        function createParticles(e) {
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                particle.style.fontSize = Math.random() * 20 + 10 + 'px';
+                particle.style.animation = 'particleFloat 1s ease-out forwards';
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        function typeWriter(el, text, callback) {
+            let i = 0;
+            const load = document.getElementById(`loading${currentStage}`);
+            el.innerHTML = '';
+            
+            typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    if (load) load.style.width = (i / text.length) * 100 + '%';
+                    el.scrollTop = el.scrollHeight;
+                } else {
+                    clearInterval(typeInterval);
+                    el.innerHTML += '<span class="cursor"></span>';
+                    if (callback) callback();
+                }
+            }, 30);
+        }
+
+        function skipTyping(stage) {
+            if (typeInterval) clearInterval(typeInterval);
+            const el = document.getElementById(`text${stage}`);
+            const load = document.getElementById(`loading${stage}`);
+            el.innerHTML = texts[stage] + '<span class="cursor"></span>';
+            if (load) load.style.width = '100%';
+            
+            if (stage === 1) document.getElementById('nextBtn1').disabled = false;
+            else if (stage === 2) initMemoryGame();
+            else if (stage === 3) createCandles();
+            else if (stage === 4) document.getElementById('nextBtn4').disabled = false;
+            else if (stage === 5) createBalloons();
+        }
+
+        function nextStage(stage) {
+            document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+            document.getElementById('stage' + stage).classList.add('active');
+            currentStage = stage;
+            
+            const el = document.getElementById(`text${stage}`);
+            if (stage === 2) typeWriter(el, texts[stage], initMemoryGame);
+            else if (stage === 3) typeWriter(el, texts[stage], createCandles);
+            else if (stage === 4) typeWriter(el, texts[stage], () => {
+                document.getElementById('nextBtn4').disabled = false;
+            });
+            else if (stage === 5) typeWriter(el, texts[stage], createBalloons);
+            else typeWriter(el, texts[stage]);
+        }
+
+        // Memory Game
+        function initMemoryGame() {
+            const game = document.getElementById('memoryGame');
+            game.innerHTML = '';
+            const shuffled = emojis.sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach((emoji, idx) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.emoji = emoji;
+                card.dataset.index = idx;
+                card.onclick = () => flipCard(card);
+                game.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length >= 2 || card.classList.contains('flipped')) return;
+            
+            card.classList.add('flipped');
+            card.textContent = card.dataset.emoji;
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                
+                setTimeout(() => {
+                    if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
+                        flippedCards.forEach(c => c.classList.add('matched'));
+                        pairs++;
+                        document.getElementById('pairs').textContent = pairs + '/4';
+                        
+                        if (pairs === 4) {
+                            setTimeout(() => nextStage(3), 1500);
+                        }
+                    } else {
+                        flippedCards.forEach(c => {
+                            c.classList.remove('flipped');
+                            c.textContent = '';
+                        });
+                    }
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Wish System
+        function addWish() {
+            const input = document.getElementById('wishInput');
+            const wish = input.value.trim();
+            
+            if (wish) {
+                wishes.push(wish);
+                const list = document.getElementById('wishList');
+                const item = document.createElement('div');
+                item.className = 'wish-item';
+                item.textContent = '⭐ ' + wish;
+                list.appendChild(item);
+                input.value = '';
+                
+                createParticles({clientX: window.innerWidth/2, clientY: window.innerHeight/2});
+            }
+        }
+
+        function createCandles() {
+            const c = document.getElementById('candles');
+            c.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const candle = document.createElement('div');
+                candle.className = 'candle';
+                candle.innerHTML = '<div class="flame"></div>';
+                candle.onclick = () => blowCandle(candle);
+                c.appendChild(candle);
+            }
+        }
+
+        function createBalloons() {
+            const b = document.getElementById('balloons');
+            b.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.onclick = (e) => {
+                    popBalloon(balloon);
+                    createParticles(e);
+                };
+                b.appendChild(balloon);
+            }
+        }
+
+        function blowCandle(candle) {
+            const flame = candle.querySelector('.flame');
+            if (!flame.classList.contains('out')) {
+                flame.classList.add('out');
+                candlesLeft--;
+                document.getElementById('candleCount').textContent = candlesLeft;
+                
+                if (candlesLeft === 0) {
+                    setTimeout(() => nextStage(4), 1500);
+                }
+            }
+        }
+
+        function popBalloon(balloon) {
+            if (!balloon.classList.contains('popped')) {
+                balloon.classList.add('popped');
+                balloonsLeft--;
+                document.getElementById('balloonCount').textContent = balloonsLeft;
+                setTimeout(() => balloon.style.display = 'none', 400);
+                
+                if (balloonsLeft === 0) {
+                    setTimeout(() => {
+                        nextStage(6);
+                        setTimeout(createFireworks, 1500);
+                    }, 1500);
+                }
+            }
+        }
+
+        function createFireworks() {
+            const colors = ['#ff6b9d', '#4facfe', '#43e97b', '#ffd700', '#fff', '#ff8c00'];
+            
+            for (let i = 0; i < 200; i++) {
+                setTimeout(() => {
+                    const c = document.createElement('div');
+                    c.className = 'confetti';
+                    c.style.left = Math.random() * 100 + '%';
+                    c.style.top = '-10px';
+                    c.style.width = Math.random() * 15 + 5 + 'px';
+                    c.style.height = c.style.width;
+                    c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    c.style.animation = 'confettiFall ' + (Math.random() * 2 + 2) + 's linear forwards';
+                    document.body.appendChild(c);
+                    setTimeout(() => c.remove(), 4000);
+                }, i * 15);
+            }
+        }
+
+        window.onload = () => {
+            const el = document.getElementById('text1');
+            typeWriter(el, texts[1], () => {
+                document.getElementById('nextBtn1').disabled = false;
+            });
+        };
+    </script>
+</body>
+</html>
